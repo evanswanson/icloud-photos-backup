@@ -1,0 +1,11 @@
+{
+  "apple_id": "your.email@icloud.com",
+  "notification_email": "your.email@gmail.com",
+  "backup_directory": "/Users/yourusername/icloud-photo-backup",
+  "email_smtp": {
+    "from_email": "your.email@gmail.com",
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "password_file": "~/.icloud-email-password"
+  }
+}

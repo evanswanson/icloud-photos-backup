@@ -1,0 +1,42 @@
+# Configuration files with credentials
+config.json
+.icloud-email-password
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Backup data (not code)
+/Users/evanswanson/icloud-photo-backup/
+
+# Log files
+*.log
+*_log.txt
+
+# Progress/state files
+*_progress.json
+download_progress.json
+delete_by_criteria_progress.json
+
+# Index files (can be regenerated)
+icloud_index.json
+cleanup_report.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

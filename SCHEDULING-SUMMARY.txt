@@ -1,0 +1,78 @@
+# iCloud Photo Backup - Automated Scheduling Summary
+
+## Current Configuration (October 16, 2025)
+
+### Daily Backup Job
+- Name: com.icloud.backup.daily
+- Schedule: Every day at 9:00 PM Pacific
+- Command: smart_download.py --recent 7 --verbose
+- Duration: ~15 seconds
+- Output: Downloads photos from last 7 days
+- Notification: Email summary with new photos
+
+### Monthly Full Backup Job
+- Name: com.icloud.backup.monthly
+- Schedule: 1st of each month at 4:00 AM
+- Command: smart_download.py --verbose
+- Duration: 5-30 minutes
+- Output: Full library sync
+- Notification: Email summary with new photos
+
+## Key Features
+
+### Fast Daily Backups
+- Early exit optimization: stops after 100 consecutive old photos
+- Only processes photos from last 7 days
+- Typical runtime: ~15 seconds
+- Sends email with location breakdown
+
+### Complete Monthly Backups
+- Safety net for missed photos
+- Full index rebuild
+- Ensures backup completeness
+
+## Log Locations
+
+Daily backup:
+  ~/icloud-photo-backup/daily_backup.log
+  ~/icloud-photo-backup/daily_backup_error.log
+
+Monthly backup:
+  ~/icloud-photo-backup/monthly_backup.log
+  ~/icloud-photo-backup/monthly_backup_error.log
+
+Download details:
+  ~/icloud-photo-backup/download_log.txt
+
+## Configuration Files
+
+~/Library/LaunchAgents/com.icloud.backup.daily.plist
+~/Library/LaunchAgents/com.icloud.backup.monthly.plist
+
+## Quick Commands
+
+Check status:
+  launchctl list | grep icloud
+
+View logs:
+  tail -f ~/icloud-photo-backup/daily_backup.log
+  tail -f ~/icloud-photo-backup/monthly_backup.log
+
+Test manually:
+  launchctl start com.icloud.backup.daily
+  launchctl start com.icloud.backup.monthly
+
+## Changes from Previous Setup
+
+REMOVED: com.icloud.cleanup.plist (weekly cleanup automation)
+REASON: Photo cleanup/deletion should be manual for safety
+
+ADDED: Fast daily incremental backups
+ADDED: Monthly full backup safety net
+ADDED: Early exit optimization for speed
+FIXED: Timezone comparison bug in date filtering
+
+## Documentation
+
+Full details: /Users/evanswanson/scripts/icloud-photo-backup/SCHEDULING.md
+Main README: /Users/evanswanson/scripts/icloud-photo-backup/README.md
