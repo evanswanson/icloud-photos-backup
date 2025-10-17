@@ -351,6 +351,11 @@ def main():
                     elif hasattr(photo, 'created') and photo.created:
                         photo_date = photo.created
 
+                    # Make photo_date timezone-aware if it's naive for proper comparison
+                    if photo_date:
+                        if photo_date.tzinfo is None:
+                            photo_date = photo_date.replace(tzinfo=timezone.utc)
+
                     if photo_date and photo_date < cutoff_date:
                         skipped_by_date += 1
                         consecutive_old_photos += 1
